@@ -22,9 +22,9 @@ export function Navbar(props) {
 
 
     return (
-        <div className='flex py-4 justify-between items-center'>
+        <div className='flex py-4 justify-between items-center bg-cyan-900'>
 
-            <span className='flex justify-center items-center w-6 h-6 bg-gray-600 text-xs text-white rounded-sm'>
+            <span className='flex justify-center items-center w-6 h-6 text-xs  rounded-sm bg-neutral-900 text-zinc-100'>
                 E
             </span>
 

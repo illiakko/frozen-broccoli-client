@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 export default function RegisterPage() {
 
-    const [name, setUsername] = useState('')
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -26,7 +26,7 @@ export default function RegisterPage() {
     const handleSubmit = () => {
         try {
             dispatch(registerUser({ name, email, password }))
-            setUsername('')
+            setName('')
             setEmail('')
             setPassword('')
         } catch (error) {
@@ -46,7 +46,7 @@ export default function RegisterPage() {
                 <input
                     type='text'
                     value={name}
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                     placeholder='Username'
                     className='mt-1 text-black w-full rounded-lg bg-gray-400 border py-1 px-2 text-xs outline-none placeholder:text-gray-700'
                 />
