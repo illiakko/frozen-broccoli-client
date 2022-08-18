@@ -1,6 +1,6 @@
 /* Fancy inputfield */
 :root {
-    --input-color: #99A3BA;
+    --input-color: #1b2029;
     --input-border: #CDD9ED;
     --input-background: #fff;
     --input-placeholder: #CBD1DC;
@@ -15,7 +15,6 @@
 
 .form-field {
     display: block;
-    width: 100%;
     padding: 8px 16px;
     line-height: 25px;
     font-size: 14px;
@@ -41,7 +40,7 @@
 .form-group {
     position: relative;
     display: flex;
-    width: 100%;
+
 }
 
 .form-group>span,

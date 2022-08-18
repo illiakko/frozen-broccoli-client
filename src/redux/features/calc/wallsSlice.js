@@ -15,7 +15,6 @@ export const WallCalc = createAsyncThunk(
                 A,
                 B,
             })
-            console.log(data);
             return data
         } catch (error) {
             console.log(error)
@@ -35,7 +34,6 @@ export const wallsSlice = createSlice({
             state.status = null
         },
         [WallCalc.fulfilled]: (state, action) => {
-            console.log(action.payload);
             state.isLoading = false
             state.result = action.payload.result
             state.status = action.payload.message

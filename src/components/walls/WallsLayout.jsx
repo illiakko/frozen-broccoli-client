@@ -14,7 +14,6 @@ export default function WallsLayout() {
 
     useEffect(() => {
         handleChange()
-        console.log('useEffect called');
     }, [A, B])
 
     const handleChange = () => {
@@ -37,7 +36,7 @@ export default function WallsLayout() {
                         <p className='w-24 text-sm'>Wall</p>
                         <p className='w-52 text-center text-sm'>Construction</p>
                         <p className='w-52 text-center text-sm'>Insulation</p>
-                        <p className='w-20 text-center text-sm'>Temperature</p>
+                        <p className='w-24 text-center text-sm'>Temperature</p>
                         <p className='w-24 text-center text-sm'>Out air velocity</p>
                         <p className='w-28 text-center text-sm'>Sunlight add temperature</p>
                     </div>

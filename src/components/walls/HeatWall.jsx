@@ -66,24 +66,19 @@ function HeatWall({ wallName }) {
                 ></VscGear>
             </div>
 
-            <div className='flex sectionInner h-12'>
-                <label className='flex '>
-                    <input type="text" className='w-16 ' />
-                    <p className='mx-2 text-sm self-center'>C°</p>
-                </label>
+            <div className='flex gap-4 sectionInner h-12'>
+                <div className="form-group w-24">
+                    <input className="form-field" type="text" />
+                    <span>C°</span>
+                </div>
 
-                <label className='flex '>
-                    <input type="text" className='w-16 ' />
-                    <p className='mx-2 text-sm self-center'>m/s</p>
-                </label>
+                <div className="form-group w-24">
+                    <input className="form-field" type="text" />
+                    <span>m/s</span>
+                </div>
 
-                <label className='flex  '>
-                    <input type="text" className='w-16 ' />
-                    <p className='mx-2 text-sm self-center'>C°</p>
-                </label>
-
-                <div class="form-group">
-                    <input class="form-field" type="text" placeholder="domain.tld" />
+                <div className="form-group w-24">
+                    <input className="form-field" type="text" />
                     <span>C°</span>
                 </div>
             </div>
