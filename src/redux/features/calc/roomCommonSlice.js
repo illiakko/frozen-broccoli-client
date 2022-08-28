@@ -4,10 +4,11 @@ const initialState = {
     roomLength: 18,
     roomWidth: 12,
     roomHeight: 6,
-    roomTemperature: -2,
+    roomTemperature: 2,
     roomRH: 85,
     roomAirVelocity: 1.5,
-    operatingHours: 24,
+    operatingHours: 22,
+    coolingTime: 24,
     roomDimentions: 'outer',
     roomSquare: 216,
     roomVolume: 1296,
@@ -41,6 +42,9 @@ export const commonRoomSlice = createSlice({
         setOperatingHours: (state, action) => {
             state.operatingHours = action.payload
         },
+        setCoolingTime: (state, action) => {
+            state.coolingTime = action.payload
+        },
         setRoomDimentions: (state, action) => {
             state.roomDimentions = action.payload
         },
@@ -58,5 +62,6 @@ export const {
     setRoomAirVelocity,
     setOperatingHours,
     setRoomDimentions,
+    setCoolingTime,
 
 } = commonRoomSlice.actions

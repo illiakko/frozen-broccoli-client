@@ -8,6 +8,7 @@ import {
     setRoomRH,
     setRoomAirVelocity,
     setOperatingHours,
+    setCoolingTime,
     setRoomDimentions,
 } from '../redux/features/calc/roomCommonSlice'
 import InputNumber from './InputNumber';
@@ -22,6 +23,7 @@ function RoomCommon() {
     const roomRH = useSelector((state) => state.common.roomRH)
     const roomAirVelocity = useSelector((state) => state.common.roomAirVelocity)
     const operatingHours = useSelector((state) => state.common.operatingHours)
+    const coolingTime = useSelector((state) => state.common.coolingTime)
     const roomDimentions = useSelector((state) => state.common.roomDimentions)
     const roomSquare = useSelector((state) => state.common.roomSquare)
     const roomVolume = useSelector((state) => state.common.roomVolume)
@@ -104,20 +106,13 @@ function RoomCommon() {
                         valueNumber={operatingHours}
                         dispatchHandler={setOperatingHours}
                     />
+                    <InputNumber
+                        labelName="Cooling time:"
+                        unitsName="h"
+                        valueNumber={coolingTime}
+                        dispatchHandler={setCoolingTime}
+                    />
                 </div>
-            </div>
-            <div>
-                <p>Length:  <span>{roomLength}</span></p>
-                <p>Width:  <span>{roomWidth}</span></p>
-                <p>Height:  <span>{roomHeight}</span></p>
-                <p>Temperature:  <span>{roomTemperature}</span></p>
-                <p>Relative humidity: <span>{roomRH}</span></p>
-                <p>Arerage air velocity: <span>{roomAirVelocity}</span></p>
-                <p>Operating hours:  <span>{operatingHours}</span></p>
-                <p>dimentions:  <span>{roomDimentions}</span></p>
-                <p>-------</p>
-                <p>Room square:  <span>{roomSquare}</span></p>
-                <p>Room volume:  <span>{roomVolume}</span></p>
             </div>
         </div>
     );

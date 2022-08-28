@@ -10,7 +10,7 @@ const initialState = {
     dorsProtection: 'windCurtain',
     ventilationIsOn: true,
     ventilatedAirTemperature: 18,
-    ventilatedAirRH: 18,
+    ventilatedAirRH: 95,
     airExchange: 4,
 }
 
