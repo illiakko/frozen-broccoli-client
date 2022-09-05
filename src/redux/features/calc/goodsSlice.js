@@ -11,9 +11,9 @@ const initialState = {
     foodCategoryList: [],
     foodList: [],
     foodItemInfo: null,
-    q21: '',
-    q22New: '',
-    q22Old: '',
+    q21: 0,
+    q22New: 0,
+    q22Old: 0,
 
 }
 

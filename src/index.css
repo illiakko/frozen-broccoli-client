@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  @import 'fancyInput.css';
+  /* @import 'fancyInput.css'; */
+  @import 'fancyBorder.css';
 
   body {
     font-family: 'Poppins', sans-serif;
@@ -37,11 +38,11 @@
     width: 20px;
     height: 20px;
     align-self: center;
-    transition: all 0.4s;
+    transition: all 0.5s;
   }
 
   .gear-active {
-    transform: rotate(20deg);
+    transform: rotate(30deg);
     color: #f15941;
   }
 

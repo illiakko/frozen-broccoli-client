@@ -90,10 +90,11 @@ function Goods() {
                     />
                     <button
                         onClick={q2Handler}
-                    >Calc</button>
-                    <p>Q2: <span>{q21}</span>kW</p>
-                    <p>Q21 from just loaded product: <span>{q22New}</span>kW</p>
-                    <p>Q21 from stored poduct: <span>{q22Old}</span>kW</p>
+                        className="bg-red-300"
+                    >Calc Q2</button>
+                    <p>Q2: <span className='text-xl font-bold'> {q21} </span> kW</p>
+                    <p>Q21 from just loaded product: <span className='text-xl font-bold'> {q22New} </span> kW</p>
+                    <p>Q21 from stored poduct: <span className='text-xl font-bold'> {q22Old} </span> kW</p>
                 </div>
                 <div className='sectionInner w-48' >
                     {
@@ -134,7 +135,7 @@ function Goods() {
                         })
                     }
                 </div>
-                <div className='sectionInner max-w-screen-sm'>
+                <div className='sectionInner w-[450px]'>
                     {foodItemInfo
                         ?
                         <div>
