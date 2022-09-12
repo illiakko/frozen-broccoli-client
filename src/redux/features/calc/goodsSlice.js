@@ -4,8 +4,8 @@ import axios from '../../../utils/axios'
 const initialState = {
     isLoading: false,
     isFoodInfoLoading: false,
-    totalMass: 100000,
-    perDayMass: 10000,
+    totalMass: 50,
+    perDayMass: 5,
     inletProdTemperature: 25,
     currentFoodItem: [],
     foodCategoryList: [],
@@ -63,7 +63,6 @@ export const getQ2 = createAsyncThunk(
                 roomTemperature,
                 coolingTime
             })
-            console.log(data);
             return data
         } catch (error) {
             console.log(error)
@@ -108,7 +107,6 @@ export const goodsSlice = createSlice({
         [getFoodItemsOfCategory.fulfilled]: (state, action) => {
             state.isLoading = false
             state.foodList = action.payload
-
         },
         [getFoodItemsOfCategory.rejectWithValue]: (state, action) => {
             state.isLoading = false

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     setAirDoorTemperature,
@@ -39,6 +39,21 @@ function Infiltration() {
     const roomLength = useSelector((state) => state.common.roomLength)
     const roomWidth = useSelector((state) => state.common.roomWidth)
     const roomHeight = useSelector((state) => state.common.roomHeight)
+
+
+    useEffect(() => {
+        Q3hendler()
+        Q44hendler()
+    }, [airDoorTemperature,
+        airDoorRH,
+        dorsOpenHours,
+        dorsWidth,
+        dorsHeight,
+        dorsProtection,
+        ventilationIsOn,
+        ventilatedAirTemperature,
+        ventilatedAirRH,
+        airExchange, roomTemperature, roomRH, roomLength, roomWidth, roomHeight])
 
     const Q3hendler = () => {
         dispatch(getQ3vent(
@@ -182,9 +197,7 @@ function Infiltration() {
                     />
                 </div>
             </div>
-            <button onClick={Q3hendler} className="bg-red-300">Culc Q3</button>
             <p>Q3: <span className='text-xl font-bold'>{Q3vent}</span> kW</p>
-            <button onClick={Q44hendler} className="bg-red-300">Culc Q44</button>
             <p>Q44: <span className='text-xl font-bold'> {Q44dors} </span> kW</p>
         </div>
     );

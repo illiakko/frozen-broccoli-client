@@ -1,5 +1,8 @@
 import React from 'react';
+import { RiWindyFill } from "react-icons/ri";
+import { WiStrongWind } from "react-icons/wi";
 import { useDispatch, useSelector } from 'react-redux'
+import { ReactComponent as QuestionIcon } from '../icons/question.svg';
 import {
     setRoomLength,
     setRoomWidth,
@@ -12,6 +15,8 @@ import {
     setRoomDimentions,
 } from '../redux/features/calc/roomCommonSlice'
 import InputNumber from './InputNumber';
+import Tooltip from './Tooltip/Tooltip';
+import { windSpeedMsg } from '../utils/prompts'
 
 function RoomCommon() {
 
@@ -21,7 +26,6 @@ function RoomCommon() {
     const roomHeight = useSelector((state) => state.common.roomHeight)
     const roomTemperature = useSelector((state) => state.common.roomTemperature)
     const roomRH = useSelector((state) => state.common.roomRH)
-    const roomAirVelocity = useSelector((state) => state.common.roomAirVelocity)
     const operatingHours = useSelector((state) => state.common.operatingHours)
     const coolingTime = useSelector((state) => state.common.coolingTime)
     const roomDimentions = useSelector((state) => state.common.roomDimentions)
@@ -94,12 +98,59 @@ function RoomCommon() {
                         valueNumber={roomRH}
                         dispatchHandler={setRoomRH}
                     />
-                    <InputNumber
-                        labelName="Arerage air velocity:"
-                        unitsName="m/s"
-                        valueNumber={roomAirVelocity}
-                        dispatchHandler={setRoomAirVelocity}
-                    />
+
+
+                    <div className="text-center flex items-center">
+                        <div className="flex gap-2 mr-[61px] cursor-pointer">
+                            <p >Air velocity</p>
+
+                            <div className="example-wrapper">
+                                <Tooltip
+                                    content={
+                                        <React.Fragment>
+                                            <p>{windSpeedMsg.one}</p>
+                                            <div className='flex items-center gap-2'>
+                                                <p>{windSpeedMsg.two}</p>
+                                                <WiStrongWind className=" w-5 h-5 fill-white block" />
+                                            </div>
+                                            <div className='flex items-center gap-2'>
+                                                <p>{windSpeedMsg.three}</p>
+                                                <RiWindyFill className=" w-5 h-5 fill-white" />
+                                            </div>
+                                        </React.Fragment>
+                                    }
+                                    direction="left"
+                                    delay="400"
+                                >
+                                    <QuestionIcon className="w-4 h-4 hover:fill-sky-500 transition ease-in-out delay-150" />
+                                </Tooltip>
+                            </div>
+
+                        </div>
+                        <label >
+                            <WiStrongWind className="m-auto mt-1 mb-2" />
+                            <input
+                                className="w-12"
+                                type="radio"
+                                name="room-wind"
+                                defaultChecked
+                                onChange={(e) => dispatch(setRoomAirVelocity("slow"))}
+                            />
+                        </label>
+                        <label>
+                            <RiWindyFill className="m-auto mt-1 mb-2" />
+                            <input
+                                className="w-12"
+                                type="radio"
+                                name="room-wind"
+                                onChange={(e) => dispatch(setRoomAirVelocity("fast"))}
+                            />
+                        </label>
+                    </div>
+
+
+
+
                     <InputNumber
                         labelName="Operating hours:"
                         unitsName="h/day"

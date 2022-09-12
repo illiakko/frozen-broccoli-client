@@ -37,7 +37,16 @@ function Goods() {
 
     useEffect(() => {
         dispatch(getFoodCategories())
+        setSelectedFoodCategory("Fruits")
+        dispatch(getFoodItemsOfCategory("Fruits"))
+        dispatch(setCurrentFoodItem("Pears"))
+        dispatch(getFoodItemInfo("Pears"))
     }, [])
+
+
+    useEffect(() => {
+        q2Handler()
+    }, [roomTemperature, currentFoodItem, totalMass, perDayMass, inletProdTemperature, coolingTime])
 
 
     const foodCategoryHandler = (event) => {
@@ -72,13 +81,13 @@ function Goods() {
                 <div>
                     <InputNumber
                         labelName="Total mass in room:"
-                        unitsName="kg"
+                        unitsName="tonn"
                         valueNumber={totalMass}
                         dispatchHandler={setTotalMass}
                     />
                     <InputNumber
                         labelName="Quantity per day:"
-                        unitsName="kg"
+                        unitsName="tonn"
                         valueNumber={perDayMass}
                         dispatchHandler={setPerDayMass}
                     />
@@ -88,10 +97,6 @@ function Goods() {
                         valueNumber={inletProdTemperature}
                         dispatchHandler={setInletProdTemperature}
                     />
-                    <button
-                        onClick={q2Handler}
-                        className="bg-red-300"
-                    >Calc Q2</button>
                     <p>Q2: <span className='text-xl font-bold'> {q21} </span> kW</p>
                     <p>Q21 from just loaded product: <span className='text-xl font-bold'> {q22New} </span> kW</p>
                     <p>Q21 from stored poduct: <span className='text-xl font-bold'> {q22Old} </span> kW</p>

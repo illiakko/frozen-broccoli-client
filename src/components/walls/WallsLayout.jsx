@@ -73,10 +73,17 @@ import {
     setBottomWallIsCustomConstruction,
     setBottomWallIsCustomInsulation,
 
+    getFrontWallQ1,
+    getBackWallQ1,
+    getLeftWallQ1,
+    getRightWallQ1,
+    getTopWallQ1,
+    getBottomWallQ1,
+
 
 } from '../../redux/features/calc/wallsSlice.js'
 
-import HeatWall from './HeatWall'
+import Wall from './Wall'
 
 export default function WallsLayout() {
 
@@ -87,6 +94,9 @@ export default function WallsLayout() {
     const topWall = useSelector((state) => state.walls.topWall)
     const bottomWall = useSelector((state) => state.walls.bottomWall)
 
+    const roomLength = useSelector((state) => state.common.roomLength)
+    const roomWidth = useSelector((state) => state.common.roomWidth)
+    const roomHeight = useSelector((state) => state.common.roomHeight)
 
 
     return (
@@ -96,7 +106,7 @@ export default function WallsLayout() {
             </div>
             <div>
                 <div >
-                    <HeatWall
+                    <Wall
                         wallName={"Front"}
                         setConstructionType={setFrontWallConstr}
                         setConstructionThickness={setFrontWallConstructionThickness}
@@ -109,9 +119,13 @@ export default function WallsLayout() {
                         setCustomInsulation={setFrontWallCustomInsulation}
                         setIsCustomConstruction={setFrontWallIsCustomConstruction}
                         setIsCustomInsulation={setFrontWallIsCustomInsulation}
+                        getQ1={getFrontWallQ1}
+
+                        wHeight={roomHeight}
+                        wLength={roomWidth}
                         wall={frontWall}
                     />
-                    <HeatWall
+                    <Wall
                         wallName={"Back"}
                         setConstructionType={setBackWallConstr}
                         setConstructionThickness={setBackWallConstructionThickness}
@@ -124,10 +138,13 @@ export default function WallsLayout() {
                         setCustomInsulation={setBackWallCustomInsulation}
                         setIsCustomConstruction={setBackWallIsCustomConstruction}
                         setIsCustomInsulation={setBackWallIsCustomInsulation}
+                        getQ1={getBackWallQ1}
 
                         wall={backWall}
+                        wHeight={roomHeight}
+                        wLength={roomWidth}
                     />
-                    <HeatWall
+                    <Wall
                         wallName={"Left"}
                         setConstructionType={setLeftWallConstr}
                         setConstructionThickness={setLeftWallConstructionThickness}
@@ -140,9 +157,13 @@ export default function WallsLayout() {
                         setCustomInsulation={setLeftWallCustomInsulation}
                         setIsCustomConstruction={setLeftWallIsCustomConstruction}
                         setIsCustomInsulation={setLeftWallIsCustomInsulation}
+                        getQ1={getLeftWallQ1}
+
+                        wHeight={roomHeight}
+                        wLength={roomLength}
                         wall={leftWall}
                     />
-                    <HeatWall
+                    <Wall
                         wallName={"Right"}
                         setConstructionType={setRightWallConstr}
                         setConstructionThickness={setRightWallConstructionThickness}
@@ -155,9 +176,13 @@ export default function WallsLayout() {
                         setCustomInsulation={setRightWallCustomInsulation}
                         setIsCustomConstruction={setRightWallIsCustomConstruction}
                         setIsCustomInsulation={setRightWallIsCustomInsulation}
+                        getQ1={getRightWallQ1}
+
+                        wHeight={roomHeight}
+                        wLength={roomLength}
                         wall={rightWall}
                     />
-                    <HeatWall
+                    <Wall
                         wallName={"Ceiling"}
                         setConstructionType={setTopWallConstr}
                         setConstructionThickness={setTopWallConstructionThickness}
@@ -170,9 +195,13 @@ export default function WallsLayout() {
                         setCustomInsulation={setTopWallCustomInsulation}
                         setIsCustomConstruction={setTopWallIsCustomConstruction}
                         setIsCustomInsulation={setTopWallIsCustomInsulation}
+                        getQ1={getTopWallQ1}
+
+                        wHeight={roomLength}
+                        wLength={roomWidth}
                         wall={topWall}
                     />
-                    <HeatWall
+                    <Wall
                         wallName={"Floor"}
                         setConstructionType={setBottomWallConstr}
                         setConstructionThickness={setBottomWallConstructionThickness}
@@ -185,6 +214,10 @@ export default function WallsLayout() {
                         setCustomInsulation={setBottomWallCustomInsulation}
                         setIsCustomConstruction={setBottomWallIsCustomConstruction}
                         setIsCustomInsulation={setBottomWallIsCustomInsulation}
+                        getQ1={getBottomWallQ1}
+
+                        wHeight={roomLength}
+                        wLength={roomWidth}
                         wall={bottomWall}
                     />
 

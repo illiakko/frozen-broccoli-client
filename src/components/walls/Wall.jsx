@@ -4,7 +4,8 @@ import { BsBrightnessHigh, BsChevronBarLeft } from "react-icons/bs";
 import { RiWindyFill } from "react-icons/ri";
 import { WiStrongWind } from "react-icons/wi";
 import { ReactComponent as MyIcon } from '../../icons/brickwall.svg';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const materialsConstruct = [
     {
@@ -69,10 +70,15 @@ function HeatWall({
     setCustomInsulation,
     setIsCustomConstruction,
     setIsCustomInsulation,
+    getQ1,
+    wHeight,
+    wLength,
     wall
 }) {
 
     const dispatch = useDispatch();
+    const windInSpeed = useSelector((state) => state.common.roomAirVelocity)
+    const roomTemperature = useSelector((state) => state.common.roomTemperature)
 
     return (
 
@@ -98,6 +104,7 @@ function HeatWall({
                     setThickness={setInsulationThickness}
                     material={wall.insulation}
                     thickness={wall.insulationThickness}
+                    setCustom={setCustomInsulation}
                     setIsCustom={setIsCustomInsulation}
                     isCustom={wall.isCustomInsulation}
                     custom={wall.customInsulation}
@@ -150,6 +157,19 @@ function HeatWall({
                 </div>
             </div>
             <div className='sectionInner'>
+                <p onClick={() => {
+                    // console.log(wall);
+                    dispatch(getQ1(
+                        {
+                            wall,
+                            wHeight,
+                            wLength,
+                            windInSpeed,
+                            roomTemperature
+                        }
+
+                    ))
+                }}>culc</p>
                 <p>{wall.heatLoad}, kW</p>
             </div>
         </div>

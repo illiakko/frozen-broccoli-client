@@ -2,14 +2,14 @@ import React from 'react';
 import { useDispatch } from 'react-redux'
 
 
-const InputNumber = function ({ labelName, valueNumber, unitsName, dispatchHandler }) {
+const InputNumber = function ({ labelName, valueNumber, unitsName, dispatchHandler, inputWidth, labelWidth }) {
     const dispatch = useDispatch()
     return (
         <React.Fragment>
             <label className='flex my-3'>
-                <p className='w-44'>{labelName}</p>
+                <p className="w-44">{labelName}</p>
                 <input
-                    className="w-14"
+                    className="w-16"
                     type="number"
                     value={valueNumber}
                     onChange={(event) => {
@@ -22,5 +22,6 @@ const InputNumber = function ({ labelName, valueNumber, unitsName, dispatchHandl
 
     );
 }
+// className='w-44'
 
 export default InputNumber;

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { useSelector, useDispatch } from 'react-redux';
 import axios from '../../../utils/axios'
 
 const initialState = {
@@ -24,13 +25,11 @@ const initialState = {
         outerTemperature: 28,
         solarTemperature: 5,
         windSpeed: "slow",
-        heatLoad: '',
+        heatLoad: 0,
         customConstruction: 0.81,
         customInsulation: 0.024,
         isCustomConstruction: true,
         isCustomInsulation: true,
-        wHeight: 12,
-        wLength: 18,
     },
     backWall: {
         construction: {
@@ -50,7 +49,7 @@ const initialState = {
         outerTemperature: 28,
         solarTemperature: 3,
         windSpeed: "slow",
-        heatLoad: '',
+        heatLoad: 0,
         customConstruction: 0.81,
         customInsulation: 0.024,
         isCustomConstruction: true,
@@ -76,7 +75,7 @@ const initialState = {
         outerTemperature: 28,
         solarTemperature: 4,
         windSpeed: "slow",
-        heatLoad: '',
+        heatLoad: 0,
         customConstruction: 0.81,
         customInsulation: 0.024,
         isCustomConstruction: true,
@@ -102,7 +101,7 @@ const initialState = {
         outerTemperature: 28,
         solarTemperature: 7,
         windSpeed: "slow",
-        heatLoad: '',
+        heatLoad: 0,
         customConstruction: 0.81,
         customInsulation: 0.024,
         isCustomConstruction: true,
@@ -128,7 +127,7 @@ const initialState = {
         outerTemperature: 28,
         solarTemperature: 10,
         windSpeed: "slow",
-        heatLoad: '',
+        heatLoad: 0,
         customConstruction: 0.81,
         customInsulation: 0.024,
         isCustomConstruction: true,
@@ -154,7 +153,7 @@ const initialState = {
         outerTemperature: 8,
         solarTemperature: 0,
         windSpeed: "slow",
-        heatLoad: '',
+        heatLoad: 0,
         customConstruction: 0.81,
         customInsulation: 0.024,
         isCustomConstruction: true,
@@ -164,6 +163,101 @@ const initialState = {
     },
 
 }
+
+
+
+export const getFrontWallQ1 = createAsyncThunk(
+    'wall/getFrontWallQ1',
+    async (wallParams) => {
+        try {
+            const { data } = await axios.post(`calc/walls`, {
+                wallParams
+            })
+            console.log(data);
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    },
+)
+export const getBackWallQ1 = createAsyncThunk(
+    'wall/getBackWallQ1',
+    async (wallParams) => {
+        try {
+            const { data } = await axios.post(`calc/walls`, {
+                wallParams
+            })
+            console.log(data);
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    },
+)
+export const getLeftWallQ1 = createAsyncThunk(
+    'wall/getLeftWallQ1',
+    async (wallParams) => {
+        try {
+            const { data } = await axios.post(`calc/walls`, {
+                wallParams
+            })
+            console.log(data);
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    },
+)
+export const getRightWallQ1 = createAsyncThunk(
+    'wall/getRightWallQ1',
+    async (wallParams) => {
+        try {
+            const { data } = await axios.post(`calc/walls`, {
+                wallParams
+            })
+            console.log(data);
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    },
+)
+export const getTopWallQ1 = createAsyncThunk(
+    'wall/getTopWallQ1',
+    async (wallParams) => {
+        try {
+            const { data } = await axios.post(`calc/walls`, {
+                wallParams
+            })
+            console.log(data);
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    },
+)
+export const getBottomWallQ1 = createAsyncThunk(
+    'wall/getBottomWallQ1',
+    async (wallParams) => {
+        try {
+            const { data } = await axios.post(`calc/walls`, {
+                wallParams
+            })
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    },
+)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -382,8 +476,26 @@ export const wallsSlice = createSlice({
         },
 
     },
-
-    extraReducers: {},
+    extraReducers: {
+        [getFrontWallQ1.fulfilled]: (state, action) => {
+            state.frontWall.heatLoad = action.payload.heatWall
+        },
+        [getBackWallQ1.fulfilled]: (state, action) => {
+            state.backWall.heatLoad = action.payload.heatWall
+        },
+        [getLeftWallQ1.fulfilled]: (state, action) => {
+            state.leftWall.heatLoad = action.payload.heatWall
+        },
+        [getRightWallQ1.fulfilled]: (state, action) => {
+            state.rightWall.heatLoad = action.payload.heatWall
+        },
+        [getTopWallQ1.fulfilled]: (state, action) => {
+            state.topWall.heatLoad = action.payload.heatWall
+        },
+        [getBottomWallQ1.fulfilled]: (state, action) => {
+            state.bottomWall.heatLoad = action.payload.heatWall
+        },
+    },
 })
 
 export default wallsSlice.reducer
