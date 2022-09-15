@@ -80,6 +80,19 @@ function HeatWall({
     const windInSpeed = useSelector((state) => state.common.roomAirVelocity)
     const roomTemperature = useSelector((state) => state.common.roomTemperature)
 
+
+    useEffect(() => {
+        dispatch(getQ1(
+            {
+                wall,
+                wHeight,
+                wLength,
+                windInSpeed,
+                roomTemperature
+            }
+        ))
+    }, [wall, wHeight, wLength, windInSpeed, roomTemperature,])
+
     return (
 
         <div className='flex gap-4 items-center mb-4'>
@@ -157,19 +170,6 @@ function HeatWall({
                 </div>
             </div>
             <div className='sectionInner'>
-                <p onClick={() => {
-                    // console.log(wall);
-                    dispatch(getQ1(
-                        {
-                            wall,
-                            wHeight,
-                            wLength,
-                            windInSpeed,
-                            roomTemperature
-                        }
-
-                    ))
-                }}>culc</p>
                 <p>{wall.heatLoad}, kW</p>
             </div>
         </div>

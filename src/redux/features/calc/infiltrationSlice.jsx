@@ -21,6 +21,7 @@ const initialState = {
 export const getQ3vent = createAsyncThunk(
     'infiltration/getQ3vent',
     async (props) => {
+
         const {
             ventilationIsOn,
             ventilatedAirTemperature,
@@ -63,6 +64,7 @@ export const getQ44dors = createAsyncThunk(
         roomTemperature,
         roomRH
     }) => {
+
         try {
             const { data } = await axios.post(`calc/infiltration`, {
                 airDoorTemperature: airDoorTemperature * 1,
@@ -70,7 +72,7 @@ export const getQ44dors = createAsyncThunk(
                 dorsOpenHours: dorsOpenHours * 1,
                 dorsWidth: dorsWidth * 1,
                 dorsHeight: dorsHeight * 1,
-                dorsProtection: dorsProtection * 1,
+                dorsProtection: dorsProtection,
                 roomTemperature: roomTemperature * 1,
                 roomRH: roomRH * 1,
             })

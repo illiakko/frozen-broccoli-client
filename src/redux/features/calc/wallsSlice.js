@@ -173,7 +173,7 @@ export const getFrontWallQ1 = createAsyncThunk(
             const { data } = await axios.post(`calc/walls`, {
                 wallParams
             })
-            console.log(data);
+
             return data
         } catch (error) {
             console.log(error)
@@ -187,7 +187,7 @@ export const getBackWallQ1 = createAsyncThunk(
             const { data } = await axios.post(`calc/walls`, {
                 wallParams
             })
-            console.log(data);
+
             return data
         } catch (error) {
             console.log(error)
@@ -201,7 +201,7 @@ export const getLeftWallQ1 = createAsyncThunk(
             const { data } = await axios.post(`calc/walls`, {
                 wallParams
             })
-            console.log(data);
+
             return data
         } catch (error) {
             console.log(error)
@@ -215,7 +215,7 @@ export const getRightWallQ1 = createAsyncThunk(
             const { data } = await axios.post(`calc/walls`, {
                 wallParams
             })
-            console.log(data);
+
             return data
         } catch (error) {
             console.log(error)
@@ -229,7 +229,7 @@ export const getTopWallQ1 = createAsyncThunk(
             const { data } = await axios.post(`calc/walls`, {
                 wallParams
             })
-            console.log(data);
+
             return data
         } catch (error) {
             console.log(error)

@@ -146,7 +146,6 @@ function Infiltration() {
                                 className='mx-3'
                                 type="radio"
                                 name="doorProtection"
-                                defaultChecked
                                 onClick={() => {
                                     dispatch(setDorsProtection("stripCurtain"))
                                 }}
@@ -158,7 +157,6 @@ function Infiltration() {
                                 className='mx-3'
                                 type="radio"
                                 name="doorProtection"
-                                defaultChecked
                                 onClick={() => {
                                     dispatch(setDorsProtection("airCurtain"))
                                 }}

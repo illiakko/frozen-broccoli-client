@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
     setLightPower,
@@ -46,6 +46,21 @@ function Additional(props) {
     const defrostType = useSelector((state) => state.additional.defrostType)
     const defrostQ = useSelector((state) => state.additional.defrostQ)
 
+    useEffect(() => {
+        dispatch(getLightQ({ lightPower, lightTime }))
+    }, [lightPower, lightTime, dispatch])
+    useEffect(() => {
+        dispatch(getFanQ({ fanNumber, fanPower, fanTime }))
+    }, [fanNumber, fanPower, fanTime, dispatch])
+    useEffect(() => {
+        dispatch(getPeopleQ({ peopleNumber, peopleTime }))
+    }, [peopleNumber, peopleTime, dispatch])
+    useEffect(() => {
+        dispatch(getOtherQ({ otherPower, otherTime }))
+    }, [otherPower, otherTime, dispatch])
+    useEffect(() => {
+        dispatch(getDefrostQ({ defrostType, defrostPower, defrostNumber, defrostTime }))
+    }, [defrostType, defrostPower, defrostNumber, defrostTime, dispatch])
 
     return (
         <div className='section'>
@@ -69,7 +84,7 @@ function Additional(props) {
                         dispatchHandler={setLightTime}
                     />
                     <p className='border-t-solid border-t-[1px] pt-3 border-t-slate-300'>{lightQ}, kW</p>
-                    <p onClick={() => dispatch(getLightQ({ lightPower, lightTime }))}>Calc</p>
+
                 </div>
 
                 <div className='sectionInner'>
@@ -93,7 +108,7 @@ function Additional(props) {
                         dispatchHandler={setFanTime}
                     />
                     <p className='border-t-solid border-t-[1px] pt-3 border-t-slate-300'>{fanQ}, kW</p>
-                    <p onClick={() => dispatch(getFanQ({ fanNumber, fanPower, fanTime }))}>Calc</p>
+
                 </div>
 
                 <div className='sectionInner'>
@@ -111,7 +126,7 @@ function Additional(props) {
                         dispatchHandler={setPeopleTime}
                     />
                     <p onClick={() => dispatch(getPeopleQ({ peopleNumber, peopleTime }))}>Calc</p>
-                    <p className='border-t-solid border-t-[1px] pt-3 border-t-slate-300'>{peopleQ}, kW</p>
+
                 </div>
 
                 <div className='sectionInner'>
@@ -128,7 +143,7 @@ function Additional(props) {
                         valueNumber={otherTime}
                         dispatchHandler={setOtherTime}
                     />
-                    <p onClick={() => dispatch(getOtherQ({ otherPower, otherTime }))}>Calc</p>
+
                     <p className='border-t-solid border-t-[1px] pt-3 border-t-slate-300'>{otherQ}, kW</p>
                 </div>
                 <div className="sectionInner">
@@ -172,7 +187,6 @@ function Additional(props) {
                         </label>
                     </div>
                     <p className='border-t-solid border-t-[1px] pt-3 border-t-slate-300'>{defrostQ}, kW</p>
-                    <p onClick={() => dispatch(getDefrostQ({ defrostType, defrostPower, defrostNumber, defrostTime }))}>Calc</p>
                 </div>
             </div>
         </div>
