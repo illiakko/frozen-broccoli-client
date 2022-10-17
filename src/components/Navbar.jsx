@@ -23,7 +23,7 @@ export function Navbar(props) {
 
     return (
         <div className='flex py-1 px-8 gradientTop shadowCustom justify-between items-center'>
-            <img className='mx-10 h-24' src="http://localhost:8000/static/logo-calc.png" alt="Cold room calculator" />
+            <img className='mx-10 h-24' src={`${process.env.REACT_APP_DOMAIN}/static/logo-calc.png`} alt="Cold room calculator" />
 
             {isAuth && (
                 <ul className='flex gap-8'>
