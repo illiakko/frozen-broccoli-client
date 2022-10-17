@@ -7,44 +7,71 @@ const initialState = {
     roomTemperature: 2,
     roomRH: 85,
     roomAirVelocity: 1.5,
-    operatingHours: 22,
-    coolingTime: 24,
-    roomDimentions: 'outer',
+    roomDimentions: 'inner',
     roomSquare: 216,
     roomVolume: 1296,
+    qTotall: 0,
 }
 
 export const commonRoomSlice = createSlice({
     name: 'commonRoom',
     initialState,
     reducers: {
+        setQTotall: (state, action) => {
+            state.qTotall = action.payload
+        },
         setRoomLength: (state, action) => {
-            state.roomLength = action.payload
+            if (action.payload <= 1) {
+                state.roomLength = 1
+            } else {
+                state.roomLength = action.payload
+            }
+            state.roomSquare = state.roomLength * state.roomWidth
+            state.roomVolume = state.roomLength * state.roomWidth * state.roomHeight
+
+        },
+        setRoomWidth: (state, action) => {
+            if (action.payload <= 1) {
+                state.roomWidth = 1
+            } else {
+                state.roomWidth = action.payload
+            }
             state.roomSquare = state.roomLength * state.roomWidth
             state.roomVolume = state.roomLength * state.roomWidth * state.roomHeight
         },
-        setRoomWidth: (state, action) => {
-            state.roomWidth = action.payload
+        setRoomHeight: (state, action) => {
+            if (action.payload <= 1) {
+                state.roomHeight = 1
+            } else {
+                state.roomHeight = action.payload
+            }
             state.roomVolume = state.roomLength * state.roomWidth * state.roomHeight
         },
-        setRoomHeight: (state, action) => {
-            state.roomHeight = action.payload
-        },
+
         setRoomTemperature: (state, action) => {
-            state.roomTemperature = action.payload
+            if (action.payload <= -50) {
+                state.roomTemperature = -50
+            } else if ((action.payload >= 50)) {
+                state.roomTemperature = 50
+            } else {
+                state.roomTemperature = action.payload
+            }
         },
+
         setRoomRH: (state, action) => {
-            state.roomRH = action.payload
+            if (action.payload <= 5) {
+                state.roomRH = 5
+            } else if ((action.payload >= 100)) {
+                state.roomRH = 100
+            } else {
+                state.roomRH = action.payload
+            }
         },
+
         setRoomAirVelocity: (state, action) => {
             state.roomAirVelocity = action.payload
         },
-        setOperatingHours: (state, action) => {
-            state.operatingHours = action.payload
-        },
-        setCoolingTime: (state, action) => {
-            state.coolingTime = action.payload
-        },
+
         setRoomDimentions: (state, action) => {
             state.roomDimentions = action.payload
         },
@@ -54,14 +81,13 @@ export const commonRoomSlice = createSlice({
 
 export default commonRoomSlice.reducer
 export const {
+    setQTotall,
     setRoomLength,
     setRoomWidth,
     setRoomHeight,
     setRoomTemperature,
     setRoomRH,
     setRoomAirVelocity,
-    setOperatingHours,
     setRoomDimentions,
-    setCoolingTime,
 
 } = commonRoomSlice.actions

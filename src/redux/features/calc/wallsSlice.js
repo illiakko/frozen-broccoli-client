@@ -6,6 +6,7 @@ const initialState = {
     result: null,
     isLoading: false,
     status: null,
+    q1Totall: 0,
 
     frontWall: {
         construction: {
@@ -164,8 +165,6 @@ const initialState = {
 
 }
 
-
-
 export const getFrontWallQ1 = createAsyncThunk(
     'wall/getFrontWallQ1',
     async (wallParams) => {
@@ -273,25 +272,45 @@ export const wallsSlice = createSlice({
             state.frontWall.insulation = action.payload
         },
         setFrontWallInsulationThickness: (state, action) => {
-            state.frontWall.insulationThickness = action.payload
+            if (action.payload < 0) {
+                state.frontWall.insulationThickness = 0
+            } else {
+                state.frontWall.insulationThickness = action.payload
+            }
         },
         setFrontWallConstructionThickness: (state, action) => {
-            state.frontWall.constructionThickness = action.payload
+            if (action.payload < 0) {
+                state.frontWall.constructionThickness = 0
+            } else {
+                state.frontWall.constructionThickness = action.payload
+            }
         },
         setFrontWallOuterTemperature: (state, action) => {
             state.frontWall.outerTemperature = action.payload
         },
         setFrontWallSolarTemperature: (state, action) => {
-            state.frontWall.solarTemperature = action.payload
+            if (action.payload < 0) {
+                state.frontWall.solarTemperature = 0
+            } else {
+                state.frontWall.solarTemperature = action.payload
+            }
         },
         setFrontWallWindSpeed: (state, action) => {
             state.frontWall.windSpeed = action.payload
         },
         setFrontWallCustomConstruction: (state, action) => {
-            state.frontWall.customConstruction = action.payload
+            if (action.payload < 0) {
+                state.frontWall.customConstruction = 0
+            } else {
+                state.frontWall.customConstruction = action.payload
+            }
         },
         setFrontWallCustomInsulation: (state, action) => {
-            state.frontWall.customInsulation = action.payload
+            if (action.payload < 0) {
+                state.frontWall.customInsulation = 0
+            } else {
+                state.frontWall.customInsulation = action.payload
+            }
         },
         setFrontWallIsCustomConstruction: (state, action) => {
             state.frontWall.isCustomConstruction = action.payload
@@ -308,25 +327,45 @@ export const wallsSlice = createSlice({
             state.backWall.insulation = action.payload
         },
         setBackWallInsulationThickness: (state, action) => {
-            state.backWall.insulationThickness = action.payload
+            if (action.payload < 0) {
+                state.backWall.insulationThickness = 0
+            } else {
+                state.backWall.insulationThickness = action.payload
+            }
         },
         setBackWallConstructionThickness: (state, action) => {
-            state.backWall.constructionThickness = action.payload
+            if (action.payload < 0) {
+                state.backWall.constructionThickness = 0
+            } else {
+                state.backWall.constructionThickness = action.payload
+            }
         },
         setBackWallOuterTemperature: (state, action) => {
             state.backWall.outerTemperature = action.payload
         },
         setBackWallSolarTemperature: (state, action) => {
-            state.backWall.solarTemperature = action.payload
+            if (action.payload < 0) {
+                state.backWall.solarTemperature = 0
+            } else {
+                state.backWall.solarTemperature = action.payload
+            }
         },
         setBackWallWindSpeed: (state, action) => {
             state.backWall.windSpeed = action.payload
         },
         setBackWallCustomConstruction: (state, action) => {
-            state.backWall.customConstruction = action.payload
+            if (action.payload < 0) {
+                state.backWall.customConstruction = 0
+            } else {
+                state.backWall.customConstruction = action.payload
+            }
         },
         setBackWallCustomInsulation: (state, action) => {
-            state.backWall.customInsulation = action.payload
+            if (action.payload < 0) {
+                state.backWall.customInsulation = 0
+            } else {
+                state.backWall.customInsulation = action.payload
+            }
         },
         setBackWallIsCustomConstruction: (state, action) => {
             state.backWall.isCustomConstruction = action.payload
@@ -343,25 +382,45 @@ export const wallsSlice = createSlice({
             state.leftWall.insulation = action.payload
         },
         setLeftWallInsulationThickness: (state, action) => {
-            state.leftWall.insulationThickness = action.payload
+            if (action.payload < 0) {
+                state.leftWall.insulationThickness = 0
+            } else {
+                state.leftWall.insulationThickness = action.payload
+            }
         },
         setLeftWallConstructionThickness: (state, action) => {
-            state.leftWall.constructionThickness = action.payload
+            if (action.payload < 0) {
+                state.leftWall.constructionThickness = 0
+            } else {
+                state.leftWall.constructionThickness = action.payload
+            }
         },
         setLeftWallOuterTemperature: (state, action) => {
             state.leftWall.outerTemperature = action.payload
         },
         setLeftWallSolarTemperature: (state, action) => {
-            state.leftWall.solarTemperature = action.payload
+            if (action.payload < 0) {
+                state.leftWall.solarTemperature = 0
+            } else {
+                state.leftWall.solarTemperature = action.payload
+            }
         },
         setLeftWallWindSpeed: (state, action) => {
             state.leftWall.windSpeed = action.payload
         },
         setLeftWallCustomConstruction: (state, action) => {
-            state.leftWall.customConstruction = action.payload
+            if (action.payload < 0) {
+                state.leftWall.customConstruction = 0
+            } else {
+                state.leftWall.customConstruction = action.payload
+            }
         },
         setLeftWallCustomInsulation: (state, action) => {
-            state.leftWall.customInsulation = action.payload
+            if (action.payload < 0) {
+                state.leftWall.customInsulation = 0
+            } else {
+                state.leftWall.customInsulation = action.payload
+            }
         },
         setLeftWallIsCustomConstruction: (state, action) => {
             state.leftWall.isCustomConstruction = action.payload
@@ -378,25 +437,45 @@ export const wallsSlice = createSlice({
             state.rightWall.insulation = action.payload
         },
         setRightWallInsulationThickness: (state, action) => {
-            state.rightWall.insulationThickness = action.payload
+            if (action.payload < 0) {
+                state.rightWall.insulationThickness = 0
+            } else {
+                state.rightWall.insulationThickness = action.payload
+            }
         },
         setRightWallConstructionThickness: (state, action) => {
-            state.rightWall.constructionThickness = action.payload
+            if (action.payload < 0) {
+                state.rightWall.constructionThickness = 0
+            } else {
+                state.rightWall.constructionThickness = action.payload
+            }
         },
         setRightWallOuterTemperature: (state, action) => {
             state.rightWall.outerTemperature = action.payload
         },
         setRightWallSolarTemperature: (state, action) => {
-            state.rightWall.solarTemperature = action.payload
+            if (action.payload < 0) {
+                state.rightWall.solarTemperature = 0
+            } else {
+                state.rightWall.solarTemperature = action.payload
+            }
         },
         setRightWallWindSpeed: (state, action) => {
             state.rightWall.windSpeed = action.payload
         },
         setRightWallCustomConstruction: (state, action) => {
-            state.rightWall.customConstruction = action.payload
+            if (action.payload < 0) {
+                state.rightWall.customConstruction = 0
+            } else {
+                state.rightWall.customConstruction = action.payload
+            }
         },
         setRightWallCustomInsulation: (state, action) => {
-            state.rightWall.customInsulation = action.payload
+            if (action.payload < 0) {
+                state.rightWall.customInsulation = 0
+            } else {
+                state.rightWall.customInsulation = action.payload
+            }
         },
         setRightWallIsCustomConstruction: (state, action) => {
             state.rightWall.isCustomConstruction = action.payload
@@ -413,25 +492,45 @@ export const wallsSlice = createSlice({
             state.topWall.insulation = action.payload
         },
         setTopWallInsulationThickness: (state, action) => {
-            state.topWall.insulationThickness = action.payload
+            if (action.payload < 0) {
+                state.topWall.insulationThickness = 0
+            } else {
+                state.topWall.insulationThickness = action.payload
+            }
         },
         setTopWallConstructionThickness: (state, action) => {
-            state.topWall.constructionThickness = action.payload
+            if (action.payload < 0) {
+                state.topWall.constructionThickness = 0
+            } else {
+                state.topWall.constructionThickness = action.payload
+            }
         },
         setTopWallOuterTemperature: (state, action) => {
             state.topWall.outerTemperature = action.payload
         },
         setTopWallSolarTemperature: (state, action) => {
-            state.topWall.solarTemperature = action.payload
+            if (action.payload < 0) {
+                state.topWall.solarTemperature = 0
+            } else {
+                state.topWall.solarTemperature = action.payload
+            }
         },
         setTopWallWindSpeed: (state, action) => {
             state.topWall.windSpeed = action.payload
         },
         setTopWallCustomConstruction: (state, action) => {
-            state.topWall.customConstruction = action.payload
+            if (action.payload < 0) {
+                state.topWall.customConstruction = 0
+            } else {
+                state.topWall.customConstruction = action.payload
+            }
         },
         setTopWallCustomInsulation: (state, action) => {
-            state.topWall.customInsulation = action.payload
+            if (action.payload < 0) {
+                state.topWall.customInsulation = 0
+            } else {
+                state.topWall.customInsulation = action.payload
+            }
         },
         setTopWallIsCustomConstruction: (state, action) => {
             state.topWall.isCustomConstruction = action.payload
@@ -448,25 +547,45 @@ export const wallsSlice = createSlice({
             state.bottomWall.insulation = action.payload
         },
         setBottomWallInsulationThickness: (state, action) => {
-            state.bottomWall.insulationThickness = action.payload
+            if (action.payload < 0) {
+                state.bottomWall.insulationThickness = 0
+            } else {
+                state.bottomWall.insulationThickness = action.payload
+            }
         },
         setBottomWallConstructionThickness: (state, action) => {
-            state.bottomWall.constructionThickness = action.payload
+            if (action.payload < 0) {
+                state.bottomWall.constructionThickness = 0
+            } else {
+                state.bottomWall.constructionThickness = action.payload
+            }
         },
         setBottomWallOuterTemperature: (state, action) => {
             state.bottomWall.outerTemperature = action.payload
         },
         setBottomWallSolarTemperature: (state, action) => {
-            state.bottomWall.solarTemperature = action.payload
+            if (action.payload < 0) {
+                state.bottomWall.solarTemperature = 0
+            } else {
+                state.bottomWall.solarTemperature = action.payload
+            }
         },
         setBottomWallWindSpeed: (state, action) => {
             state.bottomWall.windSpeed = action.payload
         },
         setBottomWallCustomConstruction: (state, action) => {
-            state.bottomWall.customConstruction = action.payload
+            if (action.payload < 0) {
+                state.bottomWall.customConstruction = 0
+            } else {
+                state.bottomWall.customConstruction = action.payload
+            }
         },
         setBottomWallCustomInsulation: (state, action) => {
-            state.bottomWall.customInsulation = action.payload
+            if (action.payload < 0) {
+                state.bottomWall.customInsulation = 0
+            } else {
+                state.bottomWall.customInsulation = action.payload
+            }
         },
         setBottomWallIsCustomConstruction: (state, action) => {
             state.bottomWall.isCustomConstruction = action.payload
@@ -479,21 +598,34 @@ export const wallsSlice = createSlice({
     extraReducers: {
         [getFrontWallQ1.fulfilled]: (state, action) => {
             state.frontWall.heatLoad = action.payload.heatWall
+            state.q1Totall = Math.round((state.frontWall.heatLoad + state.backWall.heatLoad + state.leftWall.heatLoad + state.rightWall.heatLoad + state.topWall.heatLoad + state.bottomWall.heatLoad) * 100) / 100
+
+
         },
         [getBackWallQ1.fulfilled]: (state, action) => {
             state.backWall.heatLoad = action.payload.heatWall
+            state.q1Totall = Math.round((state.frontWall.heatLoad + state.backWall.heatLoad + state.leftWall.heatLoad + state.rightWall.heatLoad + state.topWall.heatLoad + state.bottomWall.heatLoad) * 100) / 100
+
         },
         [getLeftWallQ1.fulfilled]: (state, action) => {
             state.leftWall.heatLoad = action.payload.heatWall
+            state.q1Totall = Math.round((state.frontWall.heatLoad + state.backWall.heatLoad + state.leftWall.heatLoad + state.rightWall.heatLoad + state.topWall.heatLoad + state.bottomWall.heatLoad) * 100) / 100
+
         },
         [getRightWallQ1.fulfilled]: (state, action) => {
             state.rightWall.heatLoad = action.payload.heatWall
+            state.q1Totall = Math.round((state.frontWall.heatLoad + state.backWall.heatLoad + state.leftWall.heatLoad + state.rightWall.heatLoad + state.topWall.heatLoad + state.bottomWall.heatLoad) * 100) / 100
+
         },
         [getTopWallQ1.fulfilled]: (state, action) => {
             state.topWall.heatLoad = action.payload.heatWall
+            state.q1Totall = Math.round((state.frontWall.heatLoad + state.backWall.heatLoad + state.leftWall.heatLoad + state.rightWall.heatLoad + state.topWall.heatLoad + state.bottomWall.heatLoad) * 100) / 100
+
         },
         [getBottomWallQ1.fulfilled]: (state, action) => {
             state.bottomWall.heatLoad = action.payload.heatWall
+            state.q1Totall = Math.round((state.frontWall.heatLoad + state.backWall.heatLoad + state.leftWall.heatLoad + state.rightWall.heatLoad + state.topWall.heatLoad + state.bottomWall.heatLoad) * 100) / 100
+
         },
     },
 })

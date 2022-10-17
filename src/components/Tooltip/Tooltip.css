@@ -81,7 +81,7 @@
 /* Absolute positioning */
 .Tooltip-Tip.left {
     left: auto;
-    right: calc(100% + var(--tooltip-margin));
+    right: calc(var(--tooltip-margin));
     top: 50%;
     transform: translateX(0) translateY(-50%);
 }

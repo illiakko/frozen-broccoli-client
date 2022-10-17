@@ -68,7 +68,7 @@ function Additional(props) {
                 <p>Additional</p>
             </div>
 
-            <div className='flex gap-4'>
+            <div className='flex flex-wrap gap-4'>
                 <div className='sectionInner'>
                     <p className='text-sm text-center' >Lights</p>
                     <InputNumber
@@ -125,7 +125,7 @@ function Additional(props) {
                         valueNumber={peopleTime}
                         dispatchHandler={setPeopleTime}
                     />
-                    <p onClick={() => dispatch(getPeopleQ({ peopleNumber, peopleTime }))}>Calc</p>
+                    <p className='border-t-solid border-t-[1px] pt-3 border-t-slate-300'>{peopleQ}, kW</p>
 
                 </div>
 
@@ -143,9 +143,9 @@ function Additional(props) {
                         valueNumber={otherTime}
                         dispatchHandler={setOtherTime}
                     />
-
                     <p className='border-t-solid border-t-[1px] pt-3 border-t-slate-300'>{otherQ}, kW</p>
                 </div>
+
                 <div className="sectionInner">
 
                     <p className='mb-4'>Defrost</p>

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../../utils/axios'
 
 const initialState = {
+    q4Totall: 0,
     lightPower: 0.3,
     lightTime: 2,
     lightQ: 0,
@@ -102,65 +103,119 @@ export const additionalSlice = createSlice({
     initialState,
     reducers: {
         setLightPower: (state, action) => {
-            state.lightPower = action.payload
+            if (action.payload <= 0) {
+                state.lightPower = 0
+            } else {
+                state.lightPower = action.payload
+            }
         },
         setLightTime: (state, action) => {
-            state.lightTime = action.payload
+            if (action.payload <= 0) {
+                state.lightTime = 0
+            } else {
+                state.lightTime = action.payload
+            }
         },
         setFanNumber: (state, action) => {
-            state.fanNumber = action.payload
+            if (action.payload <= 0) {
+                state.fanNumber = 0
+            } else {
+                state.fanNumber = action.payload
+            }
         },
         setFanPower: (state, action) => {
-            state.fanPower = action.payload
+            if (action.payload <= 0) {
+                state.fanPower = 0
+            } else {
+                state.fanPower = action.payload
+            }
         },
         setFanTime: (state, action) => {
-            state.fanTime = action.payload
+            if (action.payload <= 0) {
+                state.fanTime = 0
+            } else {
+                state.fanTime = action.payload
+            }
         },
         setPeopleNumber: (state, action) => {
-            state.peopleNumber = action.payload
+            if (action.payload <= 0) {
+                state.peopleNumber = 0
+            } else {
+                state.peopleNumber = action.payload
+            }
         },
         setPeopleTime: (state, action) => {
-            state.peopleTime = action.payload
+            if (action.payload <= 0) {
+                state.peopleTime = 0
+            } else {
+                state.peopleTime = action.payload
+            }
         },
         setOtherTime: (state, action) => {
-            state.otherTime = action.payload
+            if (action.payload <= 0) {
+                state.otherTime = 0
+            } else {
+                state.otherTime = action.payload
+            }
         },
         setOtherPower: (state, action) => {
-            state.otherPower = action.payload
+            if (action.payload <= 0) {
+                state.otherPower = 0
+            } else {
+                state.otherPower = action.payload
+            }
         },
         setDefrostType: (state, action) => {
             state.defrostType = action.payload
         },
+
         setDefrostPower: (state, action) => {
-            state.defrostPower = action.payload
+            if (action.payload <= 0) {
+                state.defrostPower = 0
+            } else {
+                state.defrostPower = action.payload
+            }
         },
         setDefrostNumber: (state, action) => {
-            state.defrostNumber = action.payload
+            if (action.payload <= 0) {
+                state.defrostNumber = 0
+            } else {
+                state.defrostNumber = action.payload
+            }
         },
         setDefrostTime: (state, action) => {
-            state.defrostTime = action.payload
+            if (action.payload <= 0) {
+                state.defrostTime = 0
+            } else {
+                state.defrostTime = action.payload
+            }
         },
     },
     extraReducers: {
         // Get lights heat load
         [getLightQ.fulfilled]: (state, action) => {
             state.lightQ = action.payload.lightQ
+            state.q4Totall = Math.round((state.lightQ + state.fanQ + state.peopleQ + state.otherQ + state.defrostQ) * 100) / 100
         },
         // Get fans heat load
         [getFanQ.fulfilled]: (state, action) => {
             state.fanQ = action.payload.fanQ
+            state.q4Totall = Math.round((state.lightQ + state.fanQ + state.peopleQ + state.otherQ + state.defrostQ) * 100) / 100
         },
         // Get fans people  load
         [getPeopleQ.fulfilled]: (state, action) => {
             state.peopleQ = action.payload.peopleQ
+            state.q4Totall = Math.round((state.lightQ + state.fanQ + state.peopleQ + state.otherQ + state.defrostQ) * 100) / 100
         },
         // Get other  load
         [getOtherQ.fulfilled]: (state, action) => {
             state.otherQ = action.payload.otherQ
+            state.q4Totall = Math.round((state.lightQ + state.fanQ + state.peopleQ + state.otherQ + state.defrostQ) * 100) / 100
         },
         // Get defrost  load
         [getDefrostQ.fulfilled]: (state, action) => {
             state.defrostQ = action.payload.defrostQ
+            state.q4Totall = Math.round((state.lightQ + state.fanQ + state.peopleQ + state.otherQ + state.defrostQ) * 100) / 100
         },
 
 

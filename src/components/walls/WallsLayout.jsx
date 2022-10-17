@@ -84,6 +84,7 @@ import {
 } from '../../redux/features/calc/wallsSlice.js'
 
 import Wall from './Wall'
+import FourAsOneBtn from './FourAsOneBtn.jsx';
 
 export default function WallsLayout() {
 
@@ -101,8 +102,9 @@ export default function WallsLayout() {
 
     return (
         <div className='section' >
-            <div>
-                <p className='mb-4'>Heat transfer</p>
+            <div className='flex gap-10 items-center'>
+                <p className='my-4 text-lg'>TRANSMISSION LOAD</p>
+                <FourAsOneBtn />
             </div>
             <div>
                 <div >

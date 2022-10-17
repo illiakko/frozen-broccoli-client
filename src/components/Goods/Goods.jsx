@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import InputNumber from './InputNumber';
-
+import InputNumber from '../InputNumber';
+import Tooltip from '../Tooltip/Tooltip';
+import { coolingTimeMsg } from '../../utils/prompts'
+import { ReactComponent as QuestionIcon } from '../../icons/question.svg';
 import {
     setTotalMass,
     setPerDayMass,
@@ -10,11 +12,14 @@ import {
     getFoodItemsOfCategory,
     getFoodItemInfo,
     setCurrentFoodItem,
-    getQ2
-} from '../redux/features/calc/goodsSlice'
+    getQ2,
+    setCoolingTime
+} from '../../redux/features/calc/goodsSlice'
+import ProductInfo from './ProductInfo';
+import PackageType from './PackageType'
 
 const URL_IMG_SM = "http://localhost:8000/static/img-150/"
-const URL_IMG_MD = "http://localhost:8000/static/img-300/"
+
 
 function Goods() {
 
@@ -28,12 +33,14 @@ function Goods() {
     const foodCategoryList = useSelector((state) => state.goods.foodCategoryList)
     const foodList = useSelector((state) => state.goods.foodList)
     const roomTemperature = useSelector((state) => state.common.roomTemperature)
-    const coolingTime = useSelector((state) => state.common.coolingTime)
-    const foodItemInfo = useSelector((state) => state.goods.foodItemInfo)
+    const coolingTime = useSelector((state) => state.goods.coolingTime)
+    const packaging = useSelector((state) => state.goods.packaging)
+
     const currentFoodItem = useSelector((state) => state.goods.currentFoodItem)
     const q21 = useSelector((state) => state.goods.q21)
     const q22New = useSelector((state) => state.goods.q22New)
     const q22Old = useSelector((state) => state.goods.q22Old)
+    const q21packaging = useSelector((state) => state.goods.q21packaging)
 
     useEffect(() => {
         dispatch(getFoodCategories())
@@ -46,7 +53,7 @@ function Goods() {
 
     useEffect(() => {
         q2Handler()
-    }, [roomTemperature, currentFoodItem, totalMass, perDayMass, inletProdTemperature, coolingTime])
+    }, [roomTemperature, currentFoodItem, totalMass, perDayMass, inletProdTemperature, coolingTime, packaging])
 
 
     const foodCategoryHandler = (event) => {
@@ -67,7 +74,8 @@ function Goods() {
                 inletProdTemperature,
                 currentFoodItem,
                 roomTemperature,
-                coolingTime
+                coolingTime,
+                packaging,
             }
         ))
     }
@@ -75,7 +83,7 @@ function Goods() {
     return (
         <div className="section">
             <div>
-                <p>Goods:</p>
+                <p className='font-semibold'>Goods:</p>
             </div>
             <div className='flex gap-8'>
                 <div>
@@ -97,9 +105,32 @@ function Goods() {
                         valueNumber={inletProdTemperature}
                         dispatchHandler={setInletProdTemperature}
                     />
+                    <div className='flex  items-center'>
+                        <InputNumber
+                            labelName="Cooling time:"
+                            unitsName="h"
+                            valueNumber={coolingTime}
+                            dispatchHandler={setCoolingTime}
+                        />
+                        <Tooltip
+                            content={
+                                <React.Fragment>
+                                    <p>{coolingTimeMsg.one}</p>
+                                    <p>{coolingTimeMsg.two}</p>
+                                    <p>{coolingTimeMsg.three}</p>
+                                </React.Fragment>
+                            }
+                            direction="right"
+                            delay="400"
+                        >
+                            <QuestionIcon className="w-4 h-4 hover:fill-sky-500 transition ease-in-out delay-150" />
+                        </Tooltip>
+                    </div>
+                    <PackageType />
                     <p>Q2: <span className='text-xl font-bold'> {q21} </span> kW</p>
                     <p>Q21 from just loaded product: <span className='text-xl font-bold'> {q22New} </span> kW</p>
                     <p>Q21 from stored poduct: <span className='text-xl font-bold'> {q22Old} </span> kW</p>
+                    <p>Q21 from packaging: <span className='text-xl font-bold'> {q21packaging} </span> kW</p>
                 </div>
                 <div className='sectionInner w-48' >
                     {
@@ -140,51 +171,7 @@ function Goods() {
                         })
                     }
                 </div>
-                <div className='sectionInner w-[450px]'>
-                    {foodItemInfo
-                        ?
-                        <div>
-                            <img
-                                className='w-[200px]'
-                                src={`${URL_IMG_MD}${foodItemInfo.imgMedium}`}
-                                alt={foodItemInfo.imgMedium}
-                            />
-                            <div className='flex gap-6'>
-                                <p className='font-semibold w-32'>Product:</p>
-                                <p>{foodItemInfo.foodItem}</p>
-                            </div>
-                            <div className='flex gap-6'>
-                                <p className='font-semibold w-32'>Water content:</p>
-                                <p className='self-end'>{foodItemInfo.waterContent} <span>%</span> </p>
-                            </div>
-                            <div className='flex gap-6'>
-                                <p className='font-semibold w-32'>Freez temperature:</p>
-                                <p className='self-end'>{foodItemInfo.freezPoint} <span>C°</span> </p>
-                            </div>
-                            <div className='flex gap-6'>
-                                <p className='font-semibold w-32'>Storage temperature:</p>
-                                <p className='self-end'>{foodItemInfo.storageTemperature} <span>C°</span> </p>
-                            </div>
-                            <div className='flex gap-6'>
-                                <p className='font-semibold w-32'>Storage RH: </p>
-                                <p className='self-end'>{foodItemInfo.storageRH} <span>%</span> </p>
-                            </div>
-                            <div className='flex gap-6'>
-                                <p className='font-semibold w-32'>Storage time:</p>
-                                <p className='self-end'>{foodItemInfo.storageTime} </p>
-                            </div>
-                            <div className='flex gap-6'>
-                                <p className='font-semibold w-32'>Fresh air: </p>
-                                <p className='self-end'>{foodItemInfo.freshAir} <span>m3/h</span> </p>
-                            </div>
-                            <div className='flex gap-6'>
-                                <p className='font-semibold w-32'>Cold room air circulation:</p>
-                                <p className='self-end'>{foodItemInfo.airExchange} <span>times room volume per 24 hours</span> </p>
-                            </div>
-                        </div>
-                        : ''
-                    }
-                </div>
+                <ProductInfo />
             </div>
         </div>
     );

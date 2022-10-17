@@ -1,5 +1,3 @@
 .glowing-border {
-    outline: none;
-    border-color: #9ecaed;
-    box-shadow: 0 0 20px #63a4da;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }

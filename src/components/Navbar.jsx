@@ -10,7 +10,7 @@ export function Navbar(props) {
     const dispatch = useDispatch()
 
     const activeStyles = {
-        color: 'white',
+        color: '#105442',
     }
 
     const logoutHandler = () => {
@@ -22,18 +22,15 @@ export function Navbar(props) {
 
 
     return (
-        <div className='flex py-4 justify-between items-center bg-cyan-900'>
-
-            <span className='flex justify-center items-center w-6 h-6 text-xs  rounded-sm bg-neutral-900 text-zinc-100'>
-                E
-            </span>
+        <div className='flex py-1 px-8 gradientTop shadowCustom justify-between items-center'>
+            <img className='mx-10 h-24' src="http://localhost:8000/static/logo-calc.png" alt="Cold room calculator" />
 
             {isAuth && (
                 <ul className='flex gap-8'>
                     <li>
                         <NavLink
                             to={'/'}
-                            className='text-xs text-gray-400 hover:text-white'
+                            className=' text-[#1c7b62] hover:text-[#105442]'
                             style={({ isActive }) =>
                                 isActive ? activeStyles : undefined
                             }
@@ -44,7 +41,7 @@ export function Navbar(props) {
                     <li>
                         <NavLink
                             to={'/about'}
-                            className='text-xs text-gray-400 hover:text-white'
+                            className=' text-[#1c7b62] hover:text-[#105442]'
                             style={({ isActive }) =>
                                 isActive ? activeStyles : undefined
                             }

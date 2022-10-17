@@ -12,13 +12,7 @@ module.exports = {
     },
 
     extend: {
-      minWidth: {
-        '60': '60px',
-        '80': '80px',
-        '100': '100px',
-        '150': '150px',
-        '200': '180px',
-      }
+
     },
   },
   plugins: [],

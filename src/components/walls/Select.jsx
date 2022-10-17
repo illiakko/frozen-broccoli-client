@@ -28,7 +28,7 @@ function Select({ materialsCatalog,
                     <div
                         key={material.id}
                         id={material.id}
-                        className="items-center gap-4 cursor-pointer flex justify-between"
+                        className="items-center gap-4 cursor-pointer flex justify-between "
                         onClick={() => setSelectOpen(!selectOpen)}
                     >
                         <img
@@ -103,14 +103,14 @@ function Select({ materialsCatalog,
                 ></VscGear>
 
 
-                <label className='flex  gap-2'>
+                <label className='mb-3'>
+                    <p className='text-center text-sm pb-1'>mm</p>
                     <input
                         type="number"
                         className='w-14'
                         value={thickness}
                         onChange={(event) => { dispatch(setThickness(event.currentTarget.value)) }}
                     />
-                    <p>mm</p>
                 </label>
             </div>
         </React.Fragment>

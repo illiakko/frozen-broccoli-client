@@ -2,18 +2,26 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../../utils/axios'
 
 const initialState = {
+    q2Totall: 0,
     isLoading: false,
+    coolingTime: 24,
     isFoodInfoLoading: false,
     totalMass: 50,
     perDayMass: 5,
     inletProdTemperature: 25,
-    currentFoodItem: [],
+    currentFoodItem: 'Pears',
     foodCategoryList: [],
     foodList: [],
     foodItemInfo: null,
+    packaging: {
+        name: "Wood",
+        specificHeat: 1.7,
+        weight: 0.1
+    },
     q21: 0,
     q22New: 0,
     q22Old: 0,
+    q21packaging: 0,
 
 }
 
@@ -52,8 +60,8 @@ export const getFoodItemInfo = createAsyncThunk(
 )
 export const getQ2 = createAsyncThunk(
     'goods/getQ2',
-    async ({ totalMass, perDayMass, inletProdTemperature, currentFoodItem, roomTemperature, coolingTime }) => {
-
+    async ({ totalMass, perDayMass, inletProdTemperature, currentFoodItem, roomTemperature, coolingTime, packaging }) => {
+        // console.log(totalMass, perDayMass, inletProdTemperature, currentFoodItem, roomTemperature, coolingTime, packaging);
         try {
             const { data } = await axios.post(`calc/food/q2`, {
                 totalMass,
@@ -61,8 +69,10 @@ export const getQ2 = createAsyncThunk(
                 inletProdTemperature,
                 currentFoodItem,
                 roomTemperature,
-                coolingTime
+                coolingTime,
+                packaging
             })
+
             return data
         } catch (error) {
             console.log(error)
@@ -85,6 +95,26 @@ export const goodsSlice = createSlice({
         },
         setCurrentFoodItem: (state, action) => {
             state.currentFoodItem = action.payload
+        },
+        setPackaging: (state, action) => {
+            state.packaging = action.payload
+        },
+        setPackagingWeight: (state, action) => {
+
+            if (action.payload <= 0) {
+                state.packaging.weight = 0
+            } else {
+                state.packaging.weight = action.payload
+            }
+        },
+        setCoolingTime: (state, action) => {
+            if (action.payload <= 0.1) {
+                state.coolingTime = 0.1
+            } else if ((action.payload >= 48)) {
+                state.coolingTime = 48
+            } else {
+                state.coolingTime = action.payload
+            }
         },
     },
     extraReducers: {
@@ -132,6 +162,8 @@ export const goodsSlice = createSlice({
             state.q21 = action.payload.Q2
             state.q22New = action.payload.breathNewFood
             state.q22Old = action.payload.breathAllFood
+            state.q21packaging = action.payload.Q2packaging
+            state.q2Totall = Math.round((action.payload.Q2 + action.payload.breathNewFood + action.payload.breathAllFood + action.payload.Q2packaging) * 100) / 100
 
         },
         [getQ2.rejectWithValue]: (state) => {
@@ -147,4 +179,7 @@ export const {
     setPerDayMass,
     setInletProdTemperature,
     setCurrentFoodItem,
+    setCoolingTime,
+    setPackaging,
+    setPackagingWeight
 } = goodsSlice.actions

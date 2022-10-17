@@ -10,7 +10,7 @@ const initialState = {
 
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
-    async ({ name, email, password }) => {
+    async ({ name, email, password }, { rejectWithValue }) => {
         try {
             const { data } = await axios.post('/auth/register', {
                 name,
@@ -22,39 +22,41 @@ export const registerUser = createAsyncThunk(
             }
             return data
         } catch (error) {
-            console.log(error)
+            return rejectWithValue(error.response.data)
         }
     },
 )
 
 export const loginUser = createAsyncThunk(
     'auth/loginUser',
-    async ({ email, password }) => {
+    async ({ email, password }, { rejectWithValue }) => {
+
         try {
             const { data } = await axios.post('/auth/login', {
                 email,
                 password,
             })
+            console.log(data);
             if (data.token) {
                 window.localStorage.setItem('token', data.token)
             }
             return data
 
         } catch (error) {
-            console.log(error)
+            return rejectWithValue(error.response.data)
         }
     },
 )
 
 export const getMe = createAsyncThunk(
     'auth/getMe',
-    async () => {
+    async (_, { rejectWithValue }) => {
         try {
             const { data } = await axios.get('/auth/me')
 
             return data
         } catch (error) {
-            console.log(error)
+            return rejectWithValue(error.response.data)
         }
     })
 
@@ -81,7 +83,7 @@ export const authSlice = createSlice({
             state.token = action.payload.token
             state.status = action.payload.message
         },
-        [registerUser.rejectWithValue]: (state, action) => {
+        [registerUser.rejected]: (state, action) => {
             state.status = action.payload.message
             state.isLoading = false
         },
@@ -97,7 +99,7 @@ export const authSlice = createSlice({
             state.user = action.payload.user
             state.token = action.payload.token
         },
-        [loginUser.rejectWithValue]: (state, action) => {
+        [loginUser.rejected]: (state, action) => {
             state.status = action.payload.message
             state.isLoading = false
         },
@@ -113,7 +115,7 @@ export const authSlice = createSlice({
             state.user = action.payload?.user
             state.token = action.payload?.token
         },
-        [getMe.rejectWithValue]: (state, action) => {
+        [getMe.rejected]: (state, action) => {
             state.status = action.payload.message
             state.isLoading = false
         },
