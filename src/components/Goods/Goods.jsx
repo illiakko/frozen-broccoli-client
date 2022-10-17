@@ -18,7 +18,9 @@ import {
 import ProductInfo from './ProductInfo';
 import PackageType from './PackageType'
 
-const URL_IMG_SM = "http://localhost:8000/static/img-150/"
+
+const URL_IMG_SM = `${process.env.REACT_APP_DOMAIN}/static/img-150/`
+// "http://localhost:8000"
 
 
 function Goods() {

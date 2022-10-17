@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { VscGear } from 'react-icons/vsc';
-const URL_MT_IMG = "http://localhost:8000/static/materials-150/"
+
+const URL_MT_IMG = `${process.env.REACT_APP_DOMAIN}/static/materials-150/`
 
 
 function Select({ materialsCatalog,

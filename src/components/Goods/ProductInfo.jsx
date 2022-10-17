@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-const URL_IMG_MD = "http://localhost:8000/static/img-300/"
+
+const URL_IMG_MD = `${process.env.REACT_APP_DOMAIN}/static/img-300/`
 
 function ProductInfo(props) {
     const foodItemInfo = useSelector((state) => state.goods.foodItemInfo)
