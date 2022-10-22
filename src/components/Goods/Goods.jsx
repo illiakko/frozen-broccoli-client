@@ -12,6 +12,7 @@ import {
     getFoodItemsOfCategory,
     getFoodItemInfo,
     setCurrentFoodItem,
+    setCurrentFoodCategory,
     getQ2,
     setCoolingTime
 } from '../../redux/features/calc/goodsSlice'
@@ -29,7 +30,6 @@ function Goods() {
     const totalMass = useSelector((state) => state.goods.totalMass)
     const perDayMass = useSelector((state) => state.goods.perDayMass)
     const inletProdTemperature = useSelector((state) => state.goods.inletProdTemperature)
-    const [selectedFoodCategory, setSelectedFoodCategory] = useState('')
 
 
     const foodCategoryList = useSelector((state) => state.goods.foodCategoryList)
@@ -39,36 +39,20 @@ function Goods() {
     const packaging = useSelector((state) => state.goods.packaging)
 
     const currentFoodItem = useSelector((state) => state.goods.currentFoodItem)
-    const q21 = useSelector((state) => state.goods.q21)
-    const q22New = useSelector((state) => state.goods.q22New)
-    const q22Old = useSelector((state) => state.goods.q22Old)
-    const q21packaging = useSelector((state) => state.goods.q21packaging)
+    const currentFoodCategory = useSelector((state) => state.goods.currentFoodCategory)
+    // const q21 = useSelector((state) => state.goods.q21)
+    // const q22New = useSelector((state) => state.goods.q22New)
+    // const q22Old = useSelector((state) => state.goods.q22Old)
+    // const q21packaging = useSelector((state) => state.goods.q21packaging)
 
     useEffect(() => {
         dispatch(getFoodCategories())
-        setSelectedFoodCategory("Fruits")
-        dispatch(getFoodItemsOfCategory("Fruits"))
-        dispatch(setCurrentFoodItem("Pears"))
-        dispatch(getFoodItemInfo("Pears"))
-    }, [])
+        dispatch(getFoodItemsOfCategory(currentFoodCategory))
+        dispatch(getFoodItemInfo(currentFoodItem))
+    }, [currentFoodCategory])
 
 
     useEffect(() => {
-        q2Handler()
-    }, [roomTemperature, currentFoodItem, totalMass, perDayMass, inletProdTemperature, coolingTime, packaging])
-
-
-    const foodCategoryHandler = (event) => {
-        setSelectedFoodCategory(event.currentTarget.id)
-        dispatch(getFoodItemsOfCategory(event.currentTarget.id))
-    }
-
-    const foodItemHandler = (event) => {
-        dispatch(setCurrentFoodItem(event.currentTarget.id))
-        dispatch(getFoodItemInfo(event.currentTarget.id))
-    }
-
-    const q2Handler = () => {
         dispatch(getQ2(
             {
                 totalMass,
@@ -80,6 +64,23 @@ function Goods() {
                 packaging,
             }
         ))
+    }, [roomTemperature,
+        currentFoodItem,
+        totalMass,
+        perDayMass,
+        inletProdTemperature,
+        coolingTime,
+        packaging])
+
+
+    const foodCategoryHandler = (event) => {
+        dispatch(setCurrentFoodCategory(event.currentTarget.id))
+        dispatch(getFoodItemsOfCategory(event.currentTarget.id))
+    }
+
+    const foodItemHandler = (event) => {
+        dispatch(setCurrentFoodItem(event.currentTarget.id))
+        dispatch(getFoodItemInfo(event.currentTarget.id))
     }
 
     return (
@@ -129,22 +130,28 @@ function Goods() {
                         </Tooltip>
                     </div>
                     <PackageType />
-                    <p>Q2: <span className='text-xl font-bold'> {q21} </span> kW</p>
-                    <p>Q21 from just loaded product: <span className='text-xl font-bold'> {q22New} </span> kW</p>
-                    <p>Q21 from stored poduct: <span className='text-xl font-bold'> {q22Old} </span> kW</p>
-                    <p>Q21 from packaging: <span className='text-xl font-bold'> {q21packaging} </span> kW</p>
+
                 </div>
                 <div className='sectionInner w-48' >
                     {
                         foodCategoryList.map((category, index) => {
-                            return <h1
-                                key={`category-${index}`}
-                                id={category}
-                                className={category === selectedFoodCategory
-                                    ? "cursor-pointer bg-sky-500 hover:bg-sky-700 duration-300"
-                                    : "cursor-pointer bg-sky-200 hover:bg-sky-700 duration-300"}
-                                onClick={foodCategoryHandler}
-                            >{category}</h1>
+                            return (
+                                <div className='m-2'>
+                                    <p
+                                        key={`category-${index}`}
+                                        id={category}
+                                        className={category === currentFoodCategory
+                                            ? "p-5 m-auto text-center  cursor-pointer hover:bg-[#dde6eb] text-white rounded-lg bg-[#969da0] ease-in-out duration-300"
+                                            : "p-5 m-auto text-center cursor-pointer hover:bg-[#dde6eb] text-green-900 rounded-lg bg-[#bec6ca] ease-in-out duration-300"
+
+                                        }
+
+                                        onClick={(event) => {
+                                            foodCategoryHandler(event)
+                                        }}
+                                    >{category}</p>
+                                </div>
+                            )
                         })
                     }
                 </div>
@@ -154,20 +161,21 @@ function Goods() {
                             return (
                                 <div
                                     className={food.foodItem === currentFoodItem
-                                        ? "flex gap-6 h-16 my-2 cursor-pointer bg-sky-500 hover:bg-sky-700 duration-300"
-                                        : "flex gap-6 h-16 my-2 cursor-pointer bg-sky-200 hover:bg-sky-700 duration-300"}
+                                        ? "flex gap-6 h-16 my-2 cursor-pointer hover:bg-[#dde6eb] text-white rounded-lg bg-[#969da0] ease-in-out duration-300"
+                                        : "flex gap-6 h-16 my-2 cursor-pointer hover:bg-[#dde6eb] text-green-900 rounded-lg bg-[#bec6ca] ease-in-out duration-300"
+                                    }
                                     onClick={foodItemHandler}
                                     key={`food-${index}`}
                                     id={food.foodItem}
                                 >
                                     <img
-                                        className='w-10 h-10 self-center ml-2'
+                                        className='w-10 h-10 self-center ml-2 rounded-md'
                                         src={`${URL_IMG_SM}${food.imgSmall}`}
                                         alt={food.foodItem}
                                     />
-                                    <h1
+                                    <p
                                         className='self-center'
-                                    >{food.foodItem}</h1>
+                                    >{food.foodItem}</p>
                                 </div>
                             )
                         })

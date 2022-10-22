@@ -9,7 +9,8 @@ const initialState = {
     totalMass: 50,
     perDayMass: 5,
     inletProdTemperature: 25,
-    currentFoodItem: 'Pears',
+    currentFoodItem: 'Strawberries',
+    currentFoodCategory: 'Fruits',
     foodCategoryList: [],
     foodList: [],
     foodItemInfo: null,
@@ -96,6 +97,9 @@ export const goodsSlice = createSlice({
         setCurrentFoodItem: (state, action) => {
             state.currentFoodItem = action.payload
         },
+        setCurrentFoodCategory: (state, action) => {
+            state.currentFoodCategory = action.payload
+        },
         setPackaging: (state, action) => {
             state.packaging = action.payload
         },
@@ -179,6 +183,7 @@ export const {
     setPerDayMass,
     setInletProdTemperature,
     setCurrentFoodItem,
+    setCurrentFoodCategory,
     setCoolingTime,
     setPackaging,
     setPackagingWeight

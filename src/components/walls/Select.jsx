@@ -33,7 +33,7 @@ function Select({ materialsCatalog,
                         onClick={() => setSelectOpen(!selectOpen)}
                     >
                         <img
-                            className='w-12 '
+                            className='w-12 rounded-md'
                             src={URL_MT_IMG + material.image}
                             alt={material.name}
                         />
@@ -63,7 +63,7 @@ function Select({ materialsCatalog,
                                     >
                                         <div>
                                             <img
-                                                className='w-12'
+                                                className='w-12 rounded-md'
                                                 src={URL_MT_IMG + insulation.image}
                                                 alt={insulation.name}
                                             />
@@ -108,7 +108,7 @@ function Select({ materialsCatalog,
                     <p className='text-center text-sm pb-1'>mm</p>
                     <input
                         type="number"
-                        className='w-14'
+                        className='mb-2 w-14'
                         value={thickness}
                         onChange={(event) => { dispatch(setThickness(event.currentTarget.value)) }}
                     />

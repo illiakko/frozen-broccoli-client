@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Select from './Select'
-import { BsBrightnessHigh, BsChevronBarLeft } from "react-icons/bs";
-import { RiWindyFill } from "react-icons/ri";
-import { WiStrongWind } from "react-icons/wi";
-import { ReactComponent as MyIcon } from '../../icons/brickwall.svg';
+import { BsBrightnessHigh } from "react-icons/bs";
+import { AiOutlineVerticalAlignBottom } from "react-icons/ai";
 import { useSelector, useDispatch } from 'react-redux';
 import Tooltip from '../Tooltip/Tooltip';
-import { outerTemperature, SunTemperature } from '../../utils/prompts'
+import { outerTemperature } from '../../utils/prompts'
 import SolarTable from './SolarTable/SolarTable'
 
 const materialsConstruct = [
@@ -109,9 +107,9 @@ function HeatWall({
 
     return (
 
-        <div className='flex gap-4 items-center justify-between mb-4 shadowWall px-4 pt-1 rounded-md '>
+        <div className='flex gap-4 items-center justify-between mb-4 shadowWall px-4 pt-1 rounded-md  '>
             <p className="w-12 mr-4">{wallName}</p>
-            <div className='w-[400px] flex justify-between mb-2 mr-4 p-2 pt-4 border-l-2 border-gray-200'>
+            <div className='w-[400px] flex justify-between mr-4 px-4 pt-4 border-gray-200 bg-[#e0e7ea] rounded-xl'>
                 <Select
                     materialsCatalog={materialsConstruct}
                     setMaterial={setConstructionType}
@@ -124,7 +122,7 @@ function HeatWall({
                     custom={wall.customConstruction}
                 />
             </div>
-            <div className='w-[450px] flex justify-between mb-2 mr-4 p-2 pt-4 border-l-2 border-gray-200'>
+            <div className='w-[450px] flex justify-between mr-4 px-4 pt-4 border-gray-200 bg-[#d4d9db] rounded-xl'>
                 <Select
                     materialsCatalog={materialsInsulation}
                     setMaterial={setInsulationType}
@@ -152,7 +150,7 @@ function HeatWall({
                             direction="left"
                             delay="1000"
                         >
-                            <MyIcon className="w-6 h-6 mb-[-7px] m-auto fill-sky-900" />
+                            <AiOutlineVerticalAlignBottom className="rotate-90 cursor-pointer w-6 h-6 mb-[-7px]  text-center hover:fill-sky-500 transition ease-in-out delay-150" />
                         </Tooltip>
                         <br />
                         <input
@@ -174,7 +172,7 @@ function HeatWall({
                             direction="left"
                             delay="1000"
                         >
-                            <BsBrightnessHigh className="w-6 h-6 mb-[-7px]  text-center hover:fill-sky-500 transition ease-in-out delay-150" />
+                            <BsBrightnessHigh className=" cursor-pointer w-6 h-6 mb-[-7px]  text-center hover:fill-sky-500 transition ease-in-out delay-150" />
                         </Tooltip>
                         <br />
                         <input

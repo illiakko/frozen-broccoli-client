@@ -21,7 +21,7 @@ export const coolingTimeMsg = {
 }
 export const outerTemperature = {
     one: "Temperature from the ",
-    two: "outer side of the wall",
+    two: "outer side of the wall, C°",
 }
 export const SunTemperature = {
     one: "Additional temperature differense out of heating",
