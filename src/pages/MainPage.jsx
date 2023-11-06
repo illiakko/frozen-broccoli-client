@@ -6,6 +6,7 @@ import Infiltration from '../components/Infiltration';
 import Additional from '../components/Additional';
 import SideResult from '../components/SideResult'
 import SafetyFactor from '../components/SafetyFactor';
+import DwnldBtn from './DwnldBtn'
 
 function MainPage(props) {
 
@@ -25,6 +26,9 @@ function MainPage(props) {
                 <Infiltration />
                 <Additional />
                 <SafetyFactor />
+
+                <DwnldBtn />
+
             </div>
         </div>
     );
