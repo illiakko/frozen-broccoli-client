@@ -6,7 +6,7 @@ import Infiltration from '../components/Infiltration';
 import Additional from '../components/Additional';
 import SideResult from '../components/SideResult'
 import SafetyFactor from '../components/SafetyFactor';
-import DwnldBtn from './DwnldBtn'
+import DwnldBtn from '../components/DwnldBtn'
 
 function MainPage(props) {
 
