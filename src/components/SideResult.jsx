@@ -192,9 +192,7 @@ function SideResult() {
                 <p className='uppercase font-semibold'>Compressor cooling load:</p>
                 <p>{compressor} kW</p>
             </div>
-            <div>
-                <DwnldBtn />
-            </div>
+
         </React.Fragment>
     );
 }
